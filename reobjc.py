@@ -3,7 +3,6 @@ import idaapi
 import ida_bytes
 import ida_funcs
 import ida_search
-import ida_struct
 import ida_typeinf
 import idautils
 import ida_ua
@@ -145,7 +144,7 @@ class REobjc:
         # I hope this method is correct to find __objc2_meth structs
         # BUG: when the binary has mutiple objc methods by the same name, this logic fails
         # Track RDI register. have to figure out what instance/class is referenced
-        objc2_meth_struct_id = ida_struct.get_struc_id("__objc2_meth")
+        objc2_meth_struct_id = ida_typeinf.get_struc_id("__objc2_meth")
         meth_struct_found = False
         target_method = None
         for _ref in idautils.DataRefsTo(target_methname):
